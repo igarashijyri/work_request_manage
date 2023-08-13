@@ -1,24 +1,13 @@
-# README
+# READMEというより直近タスクリスト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+デバイスをインストール
+　・ログイン後に飛ばすURL　→　後回し
 
-Things you may want to cover:
+OvertimeWorkInfoモデルの作成
+WorkMemberモデルの作成
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+各モデルにカラム追加のマイグレーションファイルを追加
+ymlのコピペ
+rails db:migrate
+rails db:fixtures:load
+mvcファイルの移し替え
