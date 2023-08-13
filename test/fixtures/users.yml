@@ -1,11 +1,76 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  id: 1
+  name: admin
+  admin: true
+  email: michael@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '111111') %>
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+two:
+  id: 2
+  name: fuga
+  admin: false
+  email: hoge@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+three:
+  id: 3
+  name: Taro
+  admin: false
+  email: fuga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  
+four:
+  id: 4
+  name: Taro
+  admin: false
+  email: auga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+five:
+  id: 5
+  name: Taro
+  admin: false
+  email: buga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+six:
+  id: 6
+  name: Taro
+  admin: false
+  email: cuga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+seven:
+  id: 7
+  name: Taro
+  admin: false
+  email: duga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+eight:
+  id: 8
+  name: Taro
+  admin: false
+  email: euga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+nine:
+  id: 9
+  name: Taro
+  admin: false
+  email: guga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+ten:
+  id: 10
+  name: Taro
+  admin: false
+  email: huga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+eleven:
+  id: 11
+  name: Taro
+  admin: false
+  email: iuga@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

@@ -1,0 +1,103 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  user_id: 1
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+  leader_user_id: 1
+
+two:
+  id: 2
+  user_id: 2
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+three:
+  id: 3
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+  leader_user_id: 1
+
+four:
+  id: 4
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+five:
+  id: 5
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+six:
+  id: 6
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+seven:
+  id: 7
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+eight:
+  id: 8
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+  leader_user_id: 1
+
+nine:
+  id: 9
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+ten:
+  id: 10
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中
+
+eleven:
+  id: 11
+  user_id: 3
+  leader_user_id: 1
+  job_num: 1
+  reason: MyString
+  reject_reason: MyString
+  ultimate_judge_status: 確認中

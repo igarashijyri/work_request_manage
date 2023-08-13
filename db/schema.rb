@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_104632) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_123522) do
+  create_table "overtime_work_infos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "job_num"
+    t.string "reason"
+    t.string "reject_reason"
+    t.string "leader_judge_status"
+    t.string "ultimate_judge_status", default: "確認中", null: false
+    t.integer "leader_user_id", null: false
+    t.integer "manager_user_id"
+    t.index ["user_id"], name: "index_overtime_work_infos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -19,8 +33,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_104632) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_members", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "overtime_work_info_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.index ["overtime_work_info_id"], name: "index_work_members_on_overtime_work_info_id"
+    t.index ["user_id"], name: "index_work_members_on_user_id"
+  end
+
+  add_foreign_key "overtime_work_infos", "users"
+  add_foreign_key "overtime_work_infos", "users", column: "leader_user_id"
+  add_foreign_key "overtime_work_infos", "users", column: "manager_user_id"
+  add_foreign_key "work_members", "overtime_work_infos"
+  add_foreign_key "work_members", "overtime_work_infos"
+  add_foreign_key "work_members", "users"
 end
