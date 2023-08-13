@@ -1,0 +1,31 @@
+<%= button_to "新規申請作成", new_overtime_work_info_path, method: :get %>
+
+<body>
+  <%= yield %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">申請者</th>
+        <th scope="col">残業開始日時</th>
+        <th scope="col">残業終了日時</th>
+        <th scope="col">詳細</th>
+        <th scope="col">ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @overtime_work_infos.each do |info| %>
+        </tr>
+          <th scope="row"><%= info.id %></th>
+          <td><%= info.user.name %></td>
+          <td><%= info.work_member.order(start_time: "ASC").first.try(:start_time).strftime('%Y年%m月%d日 %H時%M分') %></td>
+          <td><%= info.work_member.order(end_time: "ASC").first.try(:end_time).strftime('%Y年%m月%d日 %H時%M分') %></td>
+          <td><%= link_to "詳細", overtime_work_info_path(info.id) %></td>
+          <td><%= info.ultimate_judge_status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>

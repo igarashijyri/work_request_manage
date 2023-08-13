@@ -1,0 +1,21 @@
+<p>JobNo: <%= @overtime_work_info.job_num %><br></p>
+
+<p>対象者</p>
+<% @overtime_work_info.work_member.each do |member| %>
+  <p><%= member.user.name %></p>
+  <p><%= member.start_time.strftime('%Y年%m月%d日 %H時%M分') %> ~ <%= member.end_time.strftime('%Y年%m月%d日 %H時%M分') %></p>
+<% end %>
+
+<p>理由</p>
+<%= @overtime_work_info.reason %>
+
+<p>ステータス: <%= @overtime_work_info.ultimate_judge_status %></p>
+
+  <% if @admin %>
+    <%= link_to "申請情報の編集", edit_overtime_work_info_path %>
+  <% end %>
+
+<% if @overtime_work_info.reject_reason.present? %>
+  <p>却下理由</p>
+  <%= @overtime_work_info.reject_reason %>
+<% end %>
