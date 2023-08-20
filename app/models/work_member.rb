@@ -12,11 +12,10 @@ class WorkMember < ApplicationRecord
   end
 
   def self.normalize_datetime(time_list)
-    time_list.map do |time|
-      yymmdd = time.values[0..2].join('-')
-      hhmm = time.values[3..4].join(':')
+    time = time_list[0]
+    yymmdd = time.values[0..2].join('-')
+    hhmm = time.values[3..4].join(':')
 
-      "#{yymmdd} #{hhmm}".to_datetime
-    end
+    "#{yymmdd} #{hhmm}".to_datetime
   end
 end

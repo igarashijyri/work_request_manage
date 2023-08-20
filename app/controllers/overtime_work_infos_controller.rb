@@ -1,6 +1,6 @@
 class OvertimeWorkInfosController < ApplicationController
   def index
-    @overtime_work_infos = OvertimeWorkInfo.all
+    @overtime_work_infos = OvertimeWorkInfo.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -55,12 +55,19 @@ class OvertimeWorkInfosController < ApplicationController
     params.require(:overtime_work_info).permit(:job_num, :reason, :leader_user_id).merge(user_id: current_user.id)
   end
 
+  
   def work_member_params
-    params.require(:overtime_work_info).permit(:user_id, start_time_list: datetime_keys, end_time_list: datetime_keys)
+    params.require(:overtime_work_info).permit(:user_id, start_time_list: datetime_keys, end_time_list: datetime_keys).merge(user_ids)
   end
 
   def update_params
     params.require(:judge_infos).permit(:manager_user_id, :reject_reason).merge(params.permit(:judge)).merge({ :current_user_id => current_user.id })
+  end
+
+  # REFACTOR: 本当はviewから配列で値を送るのが望ましいと思うが、selectタグを使用している場合は単数であることをRailsが期待しているため、うまく動かない。
+  # 何か良い解決方法があれば...
+  def user_ids
+    params.require(:overtime_work_info).permit(:user_id_1, :user_id_2, :user_id_3, :user_id_4, :user_id_5)
   end
 
   # REFACTOR: 本当はFormクラスでAttributeAssignmentを定義したい

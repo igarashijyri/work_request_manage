@@ -44,6 +44,14 @@ class OvertimeWorkInfo < ApplicationRecord
     @error_message = 'データの更新に失敗しました。' unless save
   end
 
+  def start_time
+    work_member.order(start_time: "ASC").first.start_time.strftime('%Y年%m月%d日 %H時%M分')
+  end
+
+  def end_time
+    work_member.order(end_time: "ASC").first.end_time.strftime('%Y年%m月%d日 %H時%M分')
+  end
+
   private
 
   # REFACTOR: 最終判断者かリーダー判断かのみを条件文にして、他の比較については別途切り出したい
@@ -61,19 +69,28 @@ class OvertimeWorkInfo < ApplicationRecord
     manager_user_id = manager_id
   end
 
+  #NOTE: 最終的に最大何件送られてくるかは2023年8/16時点では決まってない
+  def user_ids
+    user_ids = []
+
+    (1..5).each do |i|
+      break if member_infos["user_id_#{i}"].nil?
+      user_ids.push(member_infos["user_id_#{i}"])
+    end
+
+    user_ids
+  end
+
   def create_work_member_info
-    start_time_list = WorkMember.normalize_datetime(member_infos[:start_time_list])
-    end_time_list = WorkMember.normalize_datetime(member_infos[:end_time_list])
-    member_num = start_time_list.length #TODO: 本当はユーザidを配列で受け取り、その件数を取りたい。
-    member_id = member_infos[:user_id]
+    start_time = WorkMember.normalize_datetime(member_infos[:start_time_list])
+    end_time = WorkMember.normalize_datetime(member_infos[:end_time_list])
 
-    member_num.times do |i|
-      start_time = start_time_list[i]
-      end_time = end_time_list[i]
-      work_member_info_map = { :user_id => member_id, :start_time => start_time, :end_time => end_time, :overtime_work_info_id => self.id }
-
+    user_ids.each do |id|
+      work_member_info_map = { :user_id => id, :start_time => start_time, :end_time => end_time, :overtime_work_info_id => self.id }
       WorkMember.new(work_member_info_map).save!
     end
+
+    raise # 保存させないため一時的に。
   end
 
   def leader?(user_id)

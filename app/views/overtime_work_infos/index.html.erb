@@ -20,12 +20,13 @@
         </tr>
           <th scope="row"><%= info.id %></th>
           <td><%= info.user.name %></td>
-          <td><%= info.work_member.order(start_time: "ASC").first.try(:start_time).strftime('%Y年%m月%d日 %H時%M分') %></td>
-          <td><%= info.work_member.order(end_time: "ASC").first.try(:end_time).strftime('%Y年%m月%d日 %H時%M分') %></td>
+          <td><%= info.start_time %></td>
+          <td><%= info.end_time %></td>
           <td><%= link_to "詳細", overtime_work_info_path(info.id) %></td>
           <td><%= info.ultimate_judge_status %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= paginate @overtime_work_infos %>
 </body>
